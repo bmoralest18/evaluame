@@ -40,6 +40,7 @@ class _EditarPerfilEstudianteWidgetState
     super.initState();
     _model = createModel(context, () => EditarPerfilEstudianteModel());
 
+    _model.seudoController ??= TextEditingController();
     _model.contraseniaController ??= TextEditingController();
   }
 
@@ -295,7 +296,7 @@ class _EditarPerfilEstudianteWidgetState
                                 0.0, 30.0, 0.0, 0.0),
                             child: Container(
                               width: 429.4,
-                              height: 244.0,
+                              height: 345.0,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
@@ -313,6 +314,79 @@ class _EditarPerfilEstudianteWidgetState
                                         'Escogio el avatar # ${FFAppState().idAvatar.toString()}',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          40.0, 0.0, 8.0, 30.0),
+                                      child: TextFormField(
+                                        controller: _model.seudoController,
+                                        autofocus: true,
+                                        obscureText: false,
+                                        decoration: InputDecoration(
+                                          labelText:
+                                              'Ingresa tu nuevo pseudonimo',
+                                          labelStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmall
+                                                  .override(
+                                                    fontFamily: 'Poppins',
+                                                    fontSize: 13.0,
+                                                  ),
+                                          hintStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMedium,
+                                          enabledBorder: UnderlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .alternate,
+                                              width: 2.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
+                                          focusedBorder: UnderlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              width: 2.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
+                                          errorBorder: UnderlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .error,
+                                              width: 2.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
+                                          focusedErrorBorder:
+                                              UnderlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .error,
+                                              width: 2.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 15.0,
+                                            ),
+                                        validator: _model
+                                            .seudoControllerValidator
+                                            .asValidator(context),
                                       ),
                                     ),
                                     Container(
@@ -446,6 +520,17 @@ class _EditarPerfilEstudianteWidgetState
                                             password: _model
                                                 .contraseniaController.text,
                                             token: FFAppState().token,
+                                          );
+                                        } else {
+                                          await StudentTable().update(
+                                            data: {
+                                              'pseudonim':
+                                                  _model.seudoController.text,
+                                            },
+                                            matchingRows: (rows) => rows.eq(
+                                              'id_student',
+                                              widget.idStudent,
+                                            ),
                                           );
                                         }
 

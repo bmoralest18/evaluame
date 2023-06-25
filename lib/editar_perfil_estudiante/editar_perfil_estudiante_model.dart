@@ -14,6 +14,9 @@ class EditarPerfilEstudianteModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // State field(s) for seudo widget.
+  TextEditingController? seudoController;
+  String? Function(BuildContext, String?)? seudoControllerValidator;
   // State field(s) for contrasenia widget.
   TextEditingController? contraseniaController;
   late bool contraseniaVisibility;
@@ -29,11 +32,11 @@ class EditarPerfilEstudianteModel extends FlutterFlowModel {
 
   void dispose() {
     unfocusNode.dispose();
+    seudoController?.dispose();
     contraseniaController?.dispose();
   }
 
   /// Action blocks are added here.
 
   /// Additional helper methods are added here.
-
 }

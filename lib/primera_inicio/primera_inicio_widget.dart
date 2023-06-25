@@ -128,8 +128,8 @@ class _PrimeraInicioWidgetState extends State<PrimeraInicioWidget> {
                                                   MainAxisAlignment.center,
                                               children: [
                                                 Container(
-                                                  width: 300.0,
-                                                  height: 300.0,
+                                                  width: 310.0,
+                                                  height: 310.0,
                                                   clipBehavior: Clip.antiAlias,
                                                   decoration: BoxDecoration(
                                                     shape: BoxShape.circle,
@@ -148,6 +148,8 @@ class _PrimeraInicioWidgetState extends State<PrimeraInicioWidget> {
                                                     20.0, 0.0, 20.0, 8.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
                                               children: [
                                                 Expanded(
                                                   child: Padding(

@@ -1,4 +1,4 @@
-package evalua.me
+package evaluam.e
 
 import io.flutter.embedding.android.FlutterActivity
 
